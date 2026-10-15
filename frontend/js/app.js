@@ -36,11 +36,11 @@ async function carregarAtivos() {
         ativos.forEach(ativos => {
             html += `
                 <tr>
-                    <td>${ativo.id}</td>
-                    <td><strong>${ativo.nome}</strong></td>
-                    <td>${ativo.numero_serie}</td>
-                    <td>${ativo.categoria}</td>
-                    <td><span class="badge ${ativo.status === 'Disponível' ? 'success' : 'warning'}">${ativo.status}</span></td>
+                    <td>${ativos.id}</td>
+                    <td><strong>${ativos.nome}</strong></td>
+                    <td>${ativos.numero_serie}</td>
+                    <td>${ativos.categoria}</td>
+                    <td><span class="badge ${ativos.status === 'Disponível' ? 'success' : 'warning'}">${ativos.status}</span></td>
                 </tr>
             `;
         });
@@ -95,5 +95,5 @@ document.addEventListener("DOMContentLoaded", carregarAtivos);
 //associar o evento de envio ao formulario
 const form = document.getElementById("form-ativos");
 if (form){
-    form.addEventListener("Submit", registrarAtivo);
+    form.addEventListener("Submit", registrarAtivos);
 }
