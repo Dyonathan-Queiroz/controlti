@@ -4,7 +4,7 @@ from typing import Optional
 class AtivoBase(BaseModel):
     nome: str
     numero_serie: str
-    catergoria: str
+    categoria: str
     status: str = "Diponível"
 
 class AtivosCreate(AtivoBase):

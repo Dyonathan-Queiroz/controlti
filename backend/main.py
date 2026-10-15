@@ -8,6 +8,7 @@ app = FastAPI(
     version="1.0.0",
 )
 
+#Config de CORS (comunicação do Front com a API)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -17,6 +18,8 @@ app.add_middleware(
 )
 
 #Registando as rotas do modulo de ativos
+app.include_router(ativos.router, prefix="/api", tags=["Ativos"])
+
 @app.get("/")
 def read_root():
     return {"message": "Bem-vindo a API de Controle de Ativos de T.I 🚀"}
