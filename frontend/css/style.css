@@ -84,3 +84,48 @@ body {
 .ativo-intem:last-child{
     border-bottom: none;
 }
+
+/*Estilização do form de cadastro*/
+.form-group{
+    margin-bottom: 16px;
+}
+.form-group label{
+    display: block;
+    font-weight: 600; 
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+.form-group input,
+.form-group select{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--text-main);
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s
+}
+.form-group input:focus,
+.form-group select:focus{
+    outline: nome;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/*Botão de submit*/
+.btn-submit{
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    weidth: 100%;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+.btn-submit:hover{
+    background-color: var(--primary-hover);
+}

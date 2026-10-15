@@ -7,13 +7,56 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- Cabeçalho da página -->
     <header class="header-main">
       <div>
         <h1>ControleTI - Gestão de Ativos</h1>
       <p> Painel Integrado de Gestão de Inventário de ativos de T.I</p>
       </div>    
     </header>
+
+     
     <main class="container">
+     <!-- Fomulario de Cadastro de Ativos -->
+     <section>
+        <h2> Registrar Novo Ativo </h2>
+        <form id="form-ativos">
+          <div class="form-group">
+            <label for="nome">Nome do Equipamento</label>
+            <input type="text" id="nome"  required placeholder="Ex: Notebook Dell Inspiron" />
+          </div>
+          <div class="form-group">
+            <label for="numero_serie">Número de Série</label>
+            <input type="text" id="numero_serie" required placeholder="Ex: SN-123456789" />
+          </div>
+        <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <select id="categoria" required>
+              <option value="">Selecione a categoria</option>
+              <option value="notebook">Notebook</option>
+              <option value="desktop">Desktop</option>
+              <option value="servidor">Servidor</option>
+              <option value="switch">Switch</option>
+              <option value="roteador">Roteador</option>
+              <option value="impressora">Impressora</option>
+              <option value="perifericos">Perifericos</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Estado inicial:</label>
+            <select id="status" required>
+              <option value="disponivel">disponivel</option>
+              <option value="em uso">Em Uso</option>
+              <option value="em manutenção">Em Manutenção</option>
+              <option value="descarte">Descarte</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-submit">Cadastrar Ativo</button>
+        </form>
+      </section>
+
+      <!-- mostrar ativos de T.I -->
         <section class="card">
             <h2>Ativos Cadastrados</h2>
             <!-- Div onde o JS vai injetar a lista de ativos -->
