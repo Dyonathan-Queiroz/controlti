@@ -11,33 +11,43 @@ async function carregarAtivos() {
             throw new Error('Erro ao cominicar com o servidor: ${resposta.status}');
         }
         const ativos = await resposta.json();
+
         //se a lista estiver vazia
         if(ativos.length === 0){
             container.innerHTML = "<p>Nenhum ativo de T.I</p>";
             return;
         }
-        //limpa o container de carregamento 
-        container.innerHTML = "";
-        ativos.forEach(ativo => {
-            const itemDiv = document.createElement("div");
-            itemDiv.className = "ativo-item";
-            itemDiv.innerHTML = `
-                <div>
-                    <strong>${ativo.nome}</strong> 
-                    <span style="color: #64748b; font-size: 0.9rem;">(Série: ${ativo.numero_serie})</span>
-                </div>
-                <div>
-                    <span style="background: #e2e8f0; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem;">
-                        ${ativo.categoria}
-                    </span>
-                    <span style="margin-left: 8px; color: ${ativo.status === 'Disponível' ? '#16a34a' : '#d97706'}; font-weight: 600; font-size: 0.85rem;">
-                        ● ${ativo.status}
-                    </span>
-                </div>
+
+        //construir a tabela ou lista visual de ativos
+        let html = `
+            <table class="ativos-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Nº de Série</th>
+                        <th>Categoria</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+            <tbody>
+        `;
+
+        ativos.forEach(ativos => {
+            html += `
+                <tr>
+                    <td>${ativo.id}</td>
+                    <td><strong>${ativo.nome}</strong></td>
+                    <td>${ativo.numero_serie}</td>
+                    <td>${ativo.categoria}</td>
+                    <td><span class="badge ${ativo.status === 'Disponível' ? 'success' : 'warning'}">${ativo.status}</span></td>
+                </tr>
             `;
-            container.appendChild(itemDiv);
         });
-    } catch (erro) {
+
+        html += `</tbody></table>`
+        container.innerHTML = html;
+    }catch (erro) {
         console.error("Erro na busca", erro);
         container.innerHTML = `
             <p class="loading" style="color: #dc2626">
