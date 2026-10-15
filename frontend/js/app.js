@@ -47,5 +47,43 @@ async function carregarAtivos() {
     }
 }
 
+//Função de lidar com o envio do formulário de cadastro(POST)
+async function registrarAtivos(evento){
+    evento.preventDefault(); // evita a pagina recarregar ao fazer o submit do formulario
+    //pegar os valores do input do formulario
+    const novoAtivo ={
+        nome: document.getElementById("nome").value,
+        numero_serie: document.getElementById("numero_serie").value,
+        categoria: document.getElementById("categoria").value,
+        status: document.getElementById("status").value
+    };
+
+    try{
+        const resposta = await fetch(`${API_URL}/ativos`,{
+            method: "POST",
+            headers: {
+                "Constent-Type": "application/json"
+            },
+            body: JSON.stringify(novoAtivo)
+        });
+
+        if (!resposta.ok){
+            throw new erro("Erro ao cadastrar ativo no servidor");
+        }
+        //limpar o formulario após o sucesso
+        document.getElementById("form-ativo").reset();
+        //Listar ativos para mostrar o novo equipamento
+        carregarAtivos()
+        alert("Ativo cadastrado com sucesso! ")
+    } catch (erro){
+        console.erro("Erro ao enviar: ", erro)
+        alert("Ocorreu um erro ao tentar registrar o ativo.")
+    }
+}
 //Executa a função assim que a pagina for totalmete carregada
 document.addEventListener("DOMContentLoaded", carregarAtivos);
+//associar o evento de envio ao formulario
+const form = document.getElementById("form-ativos");
+if (form){
+    form.addEventListener("Submit", registrarAtivo);
+}
